@@ -23,12 +23,18 @@ pip install -r requirements.txt
 
 3. Run migrations:
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 
 4. Create admin and users:
 ```bash
 python manage.py populate_data
+```
+
+4. Collect static files:
+```bash
+python manage.py collectstatic
 ```
 
 **Note:**  
