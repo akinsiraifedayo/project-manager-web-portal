@@ -1,0 +1,66 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.env
+*.venv
+venv/
+ENV/
+env/
+*.egg-info/
+.eggs/
+
+# === Django ===
+db.sqlite3
+*.sqlite3
+/media/
+staticfiles/
+*.log
+
+# === Migrations ===
+**/migrations/
+!**/migrations/__init__.py
+
+# === Environment Variables ===
+.env
+.env.*
+
+# === IDEs and Editors ===
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# === OS Files ===
+.DS_Store
+Thumbs.db
+
+# === Testing ===
+.coverage
+.tox/
+htmlcov/
+.pytest_cache/
+
+# === Build & Distribution ===
+build/
+dist/
+*.egg
+*.whl
+
+# === Docker ===
+*.pid
+*.tar
+*.bak
+*.old
+docker-compose.override.yml
+
+# === Node (if using Tailwind, Webpack, etc.) ===
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# === Other ===
+*.tmp

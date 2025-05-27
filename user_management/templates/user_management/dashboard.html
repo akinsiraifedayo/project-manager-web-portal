@@ -1,0 +1,92 @@
+{% extends 'user_management/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4">Dashboard</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- User Profile Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Profile Information</h5>
+                    <hr>
+                    <div class="mb-3">
+                        <label class="fw-bold">Username:</label>
+                        <p class="mb-2">{{ user.username }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="fw-bold">Full Name:</label>
+                        <p class="mb-2">{{ user.get_full_name|default:"Not set" }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="fw-bold">Role:</label>
+                        <p class="mb-2">{% if user.is_staff %}Staff{% else %}Regular User{% endif %}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="fw-bold">Date Joined:</label>
+                        <p class="mb-2">{{ user.date_joined|date:"F j, Y" }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="fw-bold">Last Login:</label>
+                        <p class="mb-2">{{ user.last_login|date:"F j, Y H:i" }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Quick Actions</h5>
+                    <hr>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary">
+                            <i class="bi bi-person-gear"></i> Edit Profile
+                        </a>
+                        <a href="{% url 'project-list' %}" class="btn btn-outline-primary">
+                            <i class="bi bi-kanban"></i> View Projects
+                        </a>
+                        {% if user.is_staff %}
+                        <a href="{% url 'admin:index' %}" class="btn btn-outline-primary">
+                            <i class="bi bi-people"></i> Manage Users
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Summary -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Activity Summary</h5>
+                    <hr>
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item border-0">
+                            <i class="bi bi-clock-history text-muted"></i>
+                            Last activity: Just now
+                        </div>
+                        <div class="list-group-item border-0">
+                            <i class="bi bi-folder text-muted"></i>
+                            Projects: 0
+                        </div>
+                        <div class="list-group-item border-0">
+                            <i class="bi bi-check-circle text-muted"></i>
+                            Tasks completed: 0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
