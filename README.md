@@ -6,6 +6,10 @@ This is a Django project with complete test coverage.
 - Python 3.x
 - pip (Python package installer)
 
+## Demo website
+- URL: https://project.siteownr.com/
+### credentials are provided at bottom of readme
+
 ## Setup Instructions
 
 1. Create and activate virtual environment:
