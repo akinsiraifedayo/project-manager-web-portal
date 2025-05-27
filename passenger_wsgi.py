@@ -1,0 +1,1 @@
+from interview.wsgi import application
