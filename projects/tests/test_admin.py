@@ -22,7 +22,12 @@ class AdminTest(TestCase):
         self.employee = Employee.objects.create(
             name='John Doe',
             department=self.department,
-            salary=Decimal('50000.00')
+            salary=Decimal('50000.00'),
+            user=User.objects.create_user(
+                username='johndoe',
+                password='johndoe123',
+                first_name='John',
+                last_name='Doe',)
         )
         self.project = Project.objects.create(
             project_name='Test Project',

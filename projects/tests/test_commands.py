@@ -16,7 +16,7 @@ class PopulateDataTest(TestCase):
         
         # Check the output
         self.assertIn('Departments created successfully', self.out.getvalue())
-        self.assertIn('Employees created successfully', self.out.getvalue())
+        self.assertIn('Employees and Users created successfully', self.out.getvalue())
         self.assertIn('Projects created successfully', self.out.getvalue())
 
         # Verify departments
@@ -28,7 +28,7 @@ class PopulateDataTest(TestCase):
 
         # Verify employees
         employees = Employee.objects.all()
-        self.assertEqual(employees.count(), 6)
+        self.assertEqual(employees.count(), 7)
         
         # Check specific employees
         alice = Employee.objects.get(name='Alice Johnson')
@@ -67,7 +67,7 @@ class PopulateDataTest(TestCase):
 
         # Verify counts remain the same
         self.assertEqual(Department.objects.count(), 3)
-        self.assertEqual(Employee.objects.count(), 6)
+        self.assertEqual(Employee.objects.count(), 7)
         self.assertEqual(Project.objects.count(), 7)
 
     def test_data_relationships(self):
@@ -77,7 +77,7 @@ class PopulateDataTest(TestCase):
         # Test IT department and its employees
         it_dept = Department.objects.get(name='IT')
         it_employees = it_dept.employees.all()
-        self.assertEqual(it_employees.count(), 2)
+        self.assertEqual(it_employees.count(), 3)
         self.assertTrue(
             it_employees.filter(name__in=['Bob Smith', 'Charlie Daniels']).exists()
         )

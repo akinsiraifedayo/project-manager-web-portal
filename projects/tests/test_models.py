@@ -32,7 +32,8 @@ class EmployeeModelTest(TestCase):
         employee = Employee.objects.create(
             name='John Doe',
             department=self.department,
-            salary=Decimal('50000.00')
+            salary=Decimal('50000.00'),
+            user=self.user
         )
         self.assertEqual(str(employee), 'John Doe (Test Department)')
         self.assertEqual(employee.name, 'John Doe')
@@ -54,7 +55,8 @@ class EmployeeModelTest(TestCase):
         Employee.objects.create(
             name='John Doe',
             department=self.department,
-            salary=Decimal('50000.00')
+            salary=Decimal('50000.00'),
+            user=self.user
         )
         with self.assertRaises(IntegrityError):
             self.department.delete()
@@ -65,7 +67,11 @@ class ProjectModelTest(TestCase):
         self.employee = Employee.objects.create(
             name='John Doe',
             department=self.department,
-            salary=Decimal('50000.00')
+            salary=Decimal('50000.00'),
+            user=User.objects.create_user(
+                username='johndoe',
+                password='johndoepass123'
+            )
         )
 
     def test_project_creation(self):

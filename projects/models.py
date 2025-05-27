@@ -15,6 +15,12 @@ class Department(models.Model):
 
 
 class Employee(models.Model):
+    name = models.CharField(
+        max_length=100,
+        help_text="Employee's work or nickname",
+        null=True,
+        blank=True
+    )
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,  # Delete employee when user is deleted
@@ -32,7 +38,10 @@ class Employee(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user.get_full_name()} ({self.department})"
+        if self.user.get_full_name():
+            return f"{self.user.get_full_name()} ({self.department})"
+        else:
+            return f"{self.name} ({self.department})"
 
     class Meta:
         ordering = ['user__first_name', 'user__last_name']
